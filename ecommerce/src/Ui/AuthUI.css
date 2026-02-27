@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===================== */
+/* LEFT SIDE (DESKTOP)   */
+/* ===================== */
+
+.auth-left {
+  flex: 1;
+  background: linear-gradient(135deg, #0f1c3f, #1f2d55);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.brand-content {
+  max-width: 400px;
+}
+
+.brand-content h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.brand-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* ===================== */
+/* RIGHT SIDE            */
+/* ===================== */
+
+.auth-right {
+  flex: 1;
+  background: #f4f1ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: #6b7280;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #1f2d55;
+}
+
+button {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #0f1c3f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1f2d55;
+}
+
+button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.demo {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ===================== */
+/* TABLET RESPONSIVE     */
+/* ===================== */
+
+@media (max-width: 1024px) {
+  .brand-content h1 {
+    font-size: 40px;
+  }
+}
+
+/* ===================== */
+/* MOBILE VIEW           */
+/* ===================== */
+
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    height: 35vh;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .brand-content h1 {
+    font-size: 36px;
+  }
+
+  .brand-content p {
+    font-size: 14px;
+  }
+
+  .auth-right {
+    height: 65vh;
+    padding: 20px;
+  }
+
+  .login-box {
+    width: 100%;
+  }
+}

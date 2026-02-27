@@ -1,0 +1,81 @@
+/* ---------- WRAPPER ---------- */
+.cart-wrapper {
+  min-height: 100vh;
+  background: #f6f7fb;
+  padding: 30px 50px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ---------- TITLE ---------- */
+.cart-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1e293b;
+}
+
+/* ---------- GRID ---------- */
+.cart-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ---------- CARD ---------- */
+.cart-card {
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.cart-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------- IMAGE ---------- */
+.cart-image {
+  background: #f1f3f6;
+  padding: 15px;
+  text-align: center;
+}
+
+.cart-image img {
+  width: 100%;
+  height: 140px;   /* Adjusted height */
+  object-fit: contain;
+}
+
+/* ---------- INFO ---------- */
+.cart-info {
+  padding: 15px;
+}
+
+.cart-info h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.cart-info p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1200px) {
+  .cart-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} 
