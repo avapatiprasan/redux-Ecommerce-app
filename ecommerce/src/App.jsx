@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import ProductsUi from "./Ui/ProductsUi";
 import CartUi from "./Ui/CartUi";
@@ -16,14 +16,14 @@ const App = () => {
         {/* Login Page */}
         <Route path="/" element={<AuthUi />} />
 
-        {/* Products */}
+        {/* Main Pages */}
         <Route path="/products" element={<ProductsUi />} />
         <Route path="/cart" element={<CartUi />} />
         <Route path="/wishlist" element={<WishlistUi />} />
         <Route path="/profile" element={<ProfileUi />} />
 
-        {/* If wrong route */}
-        <Route path="/" element={<AuthUi />} />
+        {/* Redirect unknown routes to Login */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );

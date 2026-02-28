@@ -1,42 +1,64 @@
-import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+/* ===============================
+   FETCH PRODUCTS (ASYNC THUNK)
+================================ */
 
-export var fetchProducts = createAsyncThunk(
-    "fetch/fetchproducts",
-    async ()=>{
-        var response = await fetch("https://dummyjson.com/products")
-        var data = await response.json()
-        return data 
+export const fetchProducts = createAsyncThunk(
+  "products/fetchProducts",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch("https://dummyjson.com/products");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+
+      const data = await response.json();
+
+      // Return only products array
+      return data.products;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
-)
+  }
+);
 
+/* ===============================
+   PRODUCT SLICE
+================================ */
 
-var productSlice = createSlice({
-    name : "productSlice",
-    initialState : {
-        products : [],
-        loading : false,
-        error : null
+const productSlice = createSlice({
+  name: "products",
 
-    },
-    reducers : {
-    
-    },
-    extraReducers : (builder)=>{
-        builder
-        .addCase(fetchProducts.pending,(state)=>{
-            state.loading = true
-        })
-        .addCase(fetchProducts.fulfilled,(state,action)=>{
-            state.loading = false,
-            state.products = action.payload.products
-        })
-        .addCase(fetchProducts.rejected,(state,action)=>{
-            state.loading = false,
-            state.error = "error" })
-    }
-})
+  initialState: {
+    products: [],
+    loading: false,
+    error: null,
+  },
 
-export var {addToCart} = productSlice.actions
+  reducers: {},
 
-export default productSlice.reducer
+  extraReducers: (builder) => {
+    builder
+      // Pending
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      // Fulfilled
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+      })
+
+      // Rejected
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || "Something went wrong";
+      });
+  },
+});
+
+export default productSlice.reducer;

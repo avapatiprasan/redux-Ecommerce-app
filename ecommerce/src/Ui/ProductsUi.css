@@ -1,9 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+/* =========================
+   GLOBAL
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 /* =========================
@@ -46,6 +52,7 @@
 
 .hero-content h1 {
   font-size: 50px;
+  font-weight: 600;
 }
 
 /* =========================
@@ -60,9 +67,8 @@
   border: none;
   outline: none;
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .search-input:focus {
@@ -87,8 +93,9 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background: rgb(39, 33, 33);
+  background: #111827;
   color: white;
+  font-size: 14px;
 }
 
 .products-wrapper.dark .dark-toggle {
@@ -120,7 +127,6 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  transition: 0.3s ease;
 }
 
 .middle-nav button:hover {
@@ -142,7 +148,6 @@
 
 .logout-btn:hover {
   background: #334155 !important;
-  transform: translateY(-2px);
 }
 
 .products-wrapper.dark .logout-btn {
@@ -173,7 +178,6 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  transition: 0.3s;
 }
 
 .products-wrapper.dark .product-card {
@@ -212,7 +216,6 @@
   padding: 6px;
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .wishlist-btn:hover {
@@ -234,6 +237,7 @@
 
 .product-info h3 {
   font-size: 16px;
+  font-weight: 500;
 }
 
 .price {
@@ -253,7 +257,6 @@
   background: #111827;
   color: white;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .cart-btn:hover {
@@ -275,15 +278,17 @@
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE BREAKPOINTS
 ========================= */
 
+/* Large Tablets */
 @media (max-width: 1200px) {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Tablets */
 @media (max-width: 768px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -298,6 +303,7 @@
   }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
   .products-grid {
     grid-template-columns: 1fr;
@@ -319,5 +325,10 @@
 
   .search-input {
     width: 100%;
+  }
+
+  .dark-toggle {
+    position: static;
+    margin-top: 15px;
   }
 }

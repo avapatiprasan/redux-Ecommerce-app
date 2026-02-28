@@ -10,7 +10,7 @@ import { Toaster, toast } from "react-hot-toast";
 import "./ProductsUi.css";
 
 const ProductsUi = () => {
-  const { products } = useSelector((state) => state.products);
+  const { products, loading } = useSelector((state) => state.products);
   const cart = useSelector((state) => state.cart.cart);
   const user = useSelector((state) => state.auth.user);
 
@@ -18,7 +18,7 @@ const ProductsUi = () => {
   const navigate = useNavigate();
 
   const [darkMode, setDarkMode] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // ✅ Search State
+  const [searchTerm, setSearchTerm] = useState("");
 
   // 🔐 Protect products page
   useEffect(() => {
@@ -36,7 +36,7 @@ const ProductsUi = () => {
     toast.success(`${product.title} added to cart`);
   };
 
-  const handlewishList = (item) => {
+  const handleWishList = (item) => {
     dispatch(addToWishList(item));
     toast.success(`${item.title} added to wishlist`);
   };
@@ -44,13 +44,10 @@ const ProductsUi = () => {
   const handleLogout = () => {
     dispatch(logout());
     toast.success("Logged out successfully");
-
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
+    setTimeout(() => navigate("/"), 500);
   };
 
-  // ✅ Filter Products Based On Search
+  // 🔎 Filter Products
   const filteredProducts = products?.filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -59,11 +56,11 @@ const ProductsUi = () => {
     <div className={`products-wrapper ${darkMode ? "dark" : ""}`}>
       <Toaster position="top-right" />
 
+      {/* HERO SECTION */}
       <section className="hero-section">
         <div className="hero-content">
           <h1>Premium Quality Products</h1>
 
-          {/* ✅ SEARCH BAR */}
           <input
             type="text"
             placeholder="Search products..."
@@ -81,6 +78,7 @@ const ProductsUi = () => {
         </button>
       </section>
 
+      {/* NAVIGATION */}
       <div className="middle-nav">
         <button onClick={() => navigate("/cart")}>
           🛒 Cart ({cart.length})
@@ -99,8 +97,11 @@ const ProductsUi = () => {
         </button>
       </div>
 
+      {/* PRODUCTS GRID */}
       <div className="products-grid">
-        {filteredProducts?.length > 0 ? (
+        {loading ? (
+          <h2 className="status">Loading products...</h2>
+        ) : filteredProducts?.length > 0 ? (
           filteredProducts.map((item) => (
             <div className="product-card" key={item.id}>
               <div className="image-container">
@@ -108,7 +109,7 @@ const ProductsUi = () => {
 
                 <button
                   className="wishlist-btn"
-                  onClick={() => handlewishList(item)}
+                  onClick={() => handleWishList(item)}
                 >
                   <CiHeart size={18} />
                 </button>
