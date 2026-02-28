@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginApi } from "../Slices/AuthSlice";
 import { useNavigate } from "react-router-dom";
-import "./AuthUi.css";
+import "./AuthUI.css";
 
 const AuthUi = () => {
   const [username, setUsername] = useState("");
